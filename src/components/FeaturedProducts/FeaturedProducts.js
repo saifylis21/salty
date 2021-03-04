@@ -1,18 +1,21 @@
 import React from 'react';
 
-import Aux from '../../hoc/Aux/Aux';
 import ProductCard from './ProductCard/ProductCard';
 
 const FeaturedProducts = (props) => {
 
-    console.log("THIS IS DATA", props.cardInfo);
+    let cards = null;
+    cards = Object.keys(props.cardInfo).map((cardKey) => {
+        let card = props.cardInfo[cardKey];
+        return (
+            <ProductCard key={cardKey} head={card.heading} img={card.image} desc={card.description}/>
+        )
+    });
 
     return (
-        <Aux>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-        </Aux>
+        <div>
+            {cards}
+        </div>
     );
 }
 
