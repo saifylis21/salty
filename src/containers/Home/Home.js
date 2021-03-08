@@ -19,7 +19,7 @@ const Home = () => {
 
     return (
         <Aux>
-            <p>casoural</p>
+            <h1 style={{margin: "100px"}}>CAUSORAL</h1>
             <FeaturedProducts cardInfo={cardInfo}/>
         </Aux>
     );

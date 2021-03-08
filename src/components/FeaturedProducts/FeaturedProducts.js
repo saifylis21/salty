@@ -1,5 +1,6 @@
 import React from 'react';
 
+import classes from './FeaturedProducts.module.css';
 import ProductCard from './ProductCard/ProductCard';
 
 const FeaturedProducts = (props) => {
@@ -7,13 +8,18 @@ const FeaturedProducts = (props) => {
     let cards = null;
     cards = Object.keys(props.cardInfo).map((cardKey) => {
         let card = props.cardInfo[cardKey];
-        return (
-            <ProductCard key={cardKey} head={card.heading} img={card.image} desc={card.description}/>
-        )
+        if (card.featured) {
+            return (
+                <ProductCard key={cardKey} name={card.name} img={card.imgURL} price={card.price}/>
+            )
+        } else {
+            return null;
+        }
+
     });
 
     return (
-        <div>
+        <div className={classes.FeaturedProducts}>
             {cards}
         </div>
     );

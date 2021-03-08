@@ -4,8 +4,9 @@ import classes from './ProductCard.module.css';
 
 const ProductCard = (props) => (
     <div className={classes.ProductCard}>
-        <p>{props.head}</p>
-        <p>info</p>
+        <img className={classes.Img} src={props.img} alt="product"/>
+        <p>Name: {props.name}</p>
+        <p>Price: {props.price}</p>
     </div>
 );
 
