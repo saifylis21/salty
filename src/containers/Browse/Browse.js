@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios-main';
+
+import Categories from '../../components/Categories/Categories';
 
 const Browse = () => {
-    const [cardInfo, setCardInfo] = useState({});
+    const [categories, setCategories] = useState({});
 
     useEffect(() => {
-        axios.get('https://ecommerce-react-dcc39-default-rtdb.firebaseio.com/.json')
+        axios.get('/categories.json')
         .then((response) => {
-            setCardInfo(response.data.cardInfo);
+            setCategories(response.data)
         })
         .catch((err) => {
             console.log(err);
         });
     }, []);
 
-    console.log(cardInfo);
+    console.log(categories);
 
     return (
         <div>
             <h1>this is browse you asshole</h1>
             <h1>this is browse you asshole</h1>
             <h1>this is browse you asshole</h1>
-            <h1>this is browse you asshole</h1>
-            <h1>this is browse you asshole</h1>
-            <h1>this is browse you asshole</h1>
-            <h1>this is browse you asshole</h1>
+            <Categories categories={categories} />
         </div>
     )
 }

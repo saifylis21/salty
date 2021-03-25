@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios-main';
 
 import Aux from '../../hoc/Aux/Aux';
 import FeaturedProducts from '../../components/FeaturedProducts/FeaturedProducts';
@@ -8,9 +8,9 @@ const Home = () => {
     const [cardInfo, setCardInfo] = useState({});
 
     useEffect(() => {
-        axios.get('https://ecommerce-react-dcc39-default-rtdb.firebaseio.com/.json')
+        axios.get('/cardInfo.json')
         .then((response) => {
-            setCardInfo(response.data.cardInfo);
+            setCardInfo(response.data);
         })
         .catch((err) => {
             console.log(err);
