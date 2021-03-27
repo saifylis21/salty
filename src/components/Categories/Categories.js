@@ -1,5 +1,6 @@
 import React from 'react';
 
+import classes from './Categories.module.css';
 import CategoryCard from './CategoryCard/CategoryCard';
 
 const Categories = (props) => {
@@ -13,7 +14,7 @@ const Categories = (props) => {
     });
 
     return (
-        <div>
+        <div className={classes.Categories} >
             {categories}
         </div>
     )

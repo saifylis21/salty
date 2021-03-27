@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axios-main';
 
+import classes from './Browse.module.css';
 import Categories from '../../components/Categories/Categories';
 
 const Browse = () => {
@@ -17,10 +18,8 @@ const Browse = () => {
     }, []);
 
     return (
-        <div>
-            <h1>browse</h1>
-            <h1>browse</h1>
-            <h1>browse</h1>
+        <div className={classes.Browse}>
+            <h1>Select a category</h1>
             <Categories categories={categories} />
         </div>
     )
