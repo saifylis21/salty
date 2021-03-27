@@ -9,7 +9,7 @@ const Categories = (props) => {
         let category = props.categories[categoryKey];
         return (
             <CategoryCard key={categoryKey} name={category.name} img={category.imageURL} />
-        )
+        );
     });
 
     return (

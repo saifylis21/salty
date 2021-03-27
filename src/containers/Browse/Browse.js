@@ -16,13 +16,11 @@ const Browse = () => {
         });
     }, []);
 
-    console.log(categories);
-
     return (
         <div>
-            <h1>this is browse you asshole</h1>
-            <h1>this is browse you asshole</h1>
-            <h1>this is browse you asshole</h1>
+            <h1>browse</h1>
+            <h1>browse</h1>
+            <h1>browse</h1>
             <Categories categories={categories} />
         </div>
     )
