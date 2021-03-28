@@ -10,7 +10,6 @@ const CategoryCard = (props) => (
             <h3>{props.name}</h3>
         </div>
     </Link>
-)
+);
 
 export default CategoryCard;
-

@@ -22,7 +22,7 @@ const Browse = () => {
             <h1>Select a category</h1>
             <Categories categories={categories} />
         </div>
-    )
-}
+    );
+};
 
 export default Browse;

@@ -17,7 +17,7 @@ const Categories = (props) => {
         <div className={classes.Categories} >
             {categories}
         </div>
-    )
-}
+    );
+};
 
 export default Categories;
