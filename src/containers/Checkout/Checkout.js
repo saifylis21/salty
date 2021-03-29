@@ -8,11 +8,11 @@ class Checkout extends Component {
     render() {
         return (
             <div>
-                <h1>this is checkout shit</h1>
-                <h1>this is checkout shit</h1>
-                <h1>this is checkout shit</h1>
-                <h1>this is checkout shit</h1>
-                <h1>this is checkout shit</h1>
+                <h1>check dis shet mothertrucker</h1>
+                <h1>check dis shet mothertrucker</h1>
+                <h1>check dis shet mothertrucker</h1>
+                <h1>check dis shet mothertrucker</h1>
+                <h1>check dis shet mothertrucker</h1>
             </div>
         )
     }
