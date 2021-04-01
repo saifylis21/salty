@@ -7,7 +7,6 @@ import Aux from '../../hoc/Aux/Aux';
 
 
 const Product = (props) => {
-
     const productId = props.match.params.id;
     const [product, setProduct] = useState({});
     const [showModal, setShowModal] = useState(false);
