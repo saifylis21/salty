@@ -48,6 +48,24 @@ const Product = (props) => {
         setPurchasing(false)
     }
 
+    const incQuantity = () => {
+        const priceAddition = product.price;
+
+        setOrder(prevState => ({
+            totalPrice: prevState.totalPrice + priceAddition,
+            quantity: prevState.quantity + 1
+        }));
+    }
+
+    const decQuantity = () => {
+        const priceDeduction = product.price;
+
+        setOrder(prevState => ({
+            totalPrice: prevState.totalPrice - priceDeduction,
+            quantity: prevState.quantity - 1
+        }));
+    }
+
     let card = null;
     if(product) {
         card = <Aux>
@@ -63,6 +81,8 @@ const Product = (props) => {
                     name={product.name}
                     order={order}
                     continue={purchaseContinueHandler}
+                    inc={incQuantity}
+                    dec={decQuantity}
                 />
             </Modal>
             {card}
