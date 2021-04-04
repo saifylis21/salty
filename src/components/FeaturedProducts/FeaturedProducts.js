@@ -10,7 +10,7 @@ const FeaturedProducts = (props) => {
         let card = props.cardInfo[cardKey];
         if (card.featured) {
             return (
-                <ProductCard key={cardKey} name={card.name} img={card.imgURL} price={card.price}/>
+                <ProductCard key={cardKey} itemId={cardKey} name={card.name} img={card.imgURL} price={card.price}/>
             )
         } else {
             return null;

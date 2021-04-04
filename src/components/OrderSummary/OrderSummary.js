@@ -10,6 +10,7 @@ const OrderSummary = (props) => {
             <Button clicked={props.dec}>-</Button>
             <Button clicked={props.inc}>+</Button>
             <h4>Total Price: {props.order.totalPrice}</h4>
+            {/* <Button clicked={props.continue}>Checkout</Button> */}
         </div>
     );
 };
