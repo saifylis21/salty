@@ -41,7 +41,7 @@ const Product = (props) => {
     }, [productId]);
 
     const purchaseContinueHandler = () => {
-        alert('You continue!');
+        props.history.push("/checkout")
     }
 
     const purchaseCancelHandler = () => {
