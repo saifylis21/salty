@@ -40,8 +40,17 @@ const Product = (props) => {
         });
     }, [productId]);
 
+    const queryParams = [];
+    for(let i in order) {
+        queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(order[i]));
+    }
+    queryParams.push(encodeURIComponent("name") + '=' + encodeURIComponent(product.name));
+    const queryString = queryParams.join('&');
     const purchaseContinueHandler = () => {
-        props.history.push("/checkout")
+        props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        })
     }
 
     const purchaseCancelHandler = () => {
