@@ -1,4 +1,4 @@
-// import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const Checkout = (props) => {
 
@@ -75,6 +75,14 @@ const Checkout = (props) => {
     //         touched: false
     //     },
     // });
+
+    useEffect(() => {
+        const query = new URLSearchParams(props.location.search);
+        console.log(query.entries());
+        // const orderInfo = {};
+
+    },[])
+
 
     return (
         <div>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axios-main';
+import { connect } from 'react-redux';
 
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import ProductCard from './ProductCard/ProductCard';
 import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../../hoc/Aux/Aux';
+import * as actionTypes from '../../store/actions';
 
 
 const Product = (props) => {
@@ -90,8 +92,8 @@ const Product = (props) => {
                     name={product.name}
                     order={order}
                     continue={purchaseContinueHandler}
-                    inc={incQuantity}
-                    dec={decQuantity}
+                    inc={this.props.inc}
+                    dec={this.props.dec}
                 />
             </Modal>
             {card}
@@ -100,4 +102,17 @@ const Product = (props) => {
 
 };
 
-export default Product;
+const mapStateToProps = state => {
+    return {
+        totalPrice: state.totalPrice
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        inc: (add) => dispatch({type: actionTypes.INC_QUANTITY, priceAddition: add}),
+        dec: (dec) => dispatch({type: actionTypes.DEC_QUANTITY, priceDeduction: dec})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
