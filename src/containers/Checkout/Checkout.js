@@ -77,8 +77,8 @@ const Checkout = (props) => {
     // });
 
     useEffect(() => {
-        const query = new URLSearchParams(props.location.search);
-        console.log(query.entries());
+        // const query = new URLSearchParams(props.location.search);
+        // console.log(query.entries());
         // const orderInfo = {};
 
     },[])

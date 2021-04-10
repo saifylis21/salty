@@ -10,11 +10,14 @@ const reducer = (state = initialState, action) => {
         case actionTypes.INC_QUANTITY:
             return {
                 ...state,
-                // totalPrice: state.totalPrice + njdsfkanjkfdanfh
+                totalPrice: state.totalPrice + action.priceAddition,
+                quantity: state.quantity + 1
             };
         case actionTypes.DEC_QUANTITY:
             return {
-                
+                ...state,
+                totalPrice: state.totalPrice + action.priceDeduction,
+                quantity: state.quantity - 1
             };
         default:
             return state;

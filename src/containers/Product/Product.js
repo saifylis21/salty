@@ -13,10 +13,6 @@ import * as actionTypes from '../../store/actions';
 const Product = (props) => {
     const productId = props.match.params.id;
     const [product, setProduct] = useState({});
-    const [order, setOrder] = useState({
-        totalPrice: 0,
-        quantity: 0
-    });
     const [purchasing, setPurchasing] = useState(false);
 
     useEffect(() => {
@@ -30,10 +26,6 @@ const Product = (props) => {
                         name: item.name,                        
                         price: item.price             
                     });
-                    setOrder({
-                        totalPrice: item.price,
-                        quantity: 1
-                    });
                 }
             });
         })
@@ -42,39 +34,13 @@ const Product = (props) => {
         });
     }, [productId]);
 
-    const queryParams = [];
-    for(let i in order) {
-        queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(order[i]));
-    }
-    queryParams.push(encodeURIComponent("name") + '=' + encodeURIComponent(product.name));
-    const queryString = queryParams.join('&');
+
     const purchaseContinueHandler = () => {
-        props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        })
+        props.history.push('/checkout');
     }
 
     const purchaseCancelHandler = () => {
         setPurchasing(false)
-    }
-
-    const incQuantity = () => {
-        const priceAddition = product.price;
-
-        setOrder(prevState => ({
-            totalPrice: prevState.totalPrice + priceAddition,
-            quantity: prevState.quantity + 1
-        }));
-    }
-
-    const decQuantity = () => {
-        const priceDeduction = product.price;
-
-        setOrder(prevState => ({
-            totalPrice: prevState.totalPrice - priceDeduction,
-            quantity: prevState.quantity - 1
-        }));
     }
 
     let card = null;
@@ -90,10 +56,11 @@ const Product = (props) => {
             <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
                 <OrderSummary
                     name={product.name}
-                    order={order}
+                    totalPrice={props.totalPrice}
+                    quantity={props.quantity}
                     continue={purchaseContinueHandler}
-                    inc={this.props.inc}
-                    dec={this.props.dec}
+                    inc={props.inc}
+                    dec={props.dec}
                 />
             </Modal>
             {card}
@@ -104,14 +71,15 @@ const Product = (props) => {
 
 const mapStateToProps = state => {
     return {
-        totalPrice: state.totalPrice
+        totalPrice: state.totalPrice,
+        quantity: state.quantity
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        inc: (add) => dispatch({type: actionTypes.INC_QUANTITY, priceAddition: add}),
-        dec: (dec) => dispatch({type: actionTypes.DEC_QUANTITY, priceDeduction: dec})
+        inc: () => dispatch({type: actionTypes.INC_QUANTITY, priceAddition: 10}),
+        dec: () => dispatch({type: actionTypes.DEC_QUANTITY, priceDeduction: 10})
     }
 }
 
