@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.DEC_QUANTITY:
             return {
                 ...state,
-                totalPrice: state.totalPrice + action.priceDeduction,
+                totalPrice: state.totalPrice - action.priceDeduction,
                 quantity: state.quantity - 1
             };
         default:

@@ -61,6 +61,7 @@ const Product = (props) => {
                     continue={purchaseContinueHandler}
                     inc={props.inc}
                     dec={props.dec}
+                    cost={product.price}
                 />
             </Modal>
             {card}
@@ -78,8 +79,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        inc: () => dispatch({type: actionTypes.INC_QUANTITY, priceAddition: 10}),
-        dec: () => dispatch({type: actionTypes.DEC_QUANTITY, priceDeduction: 10})
+        inc: (cost) => dispatch({type: actionTypes.INC_QUANTITY, priceAddition: cost}),
+        dec: (cost) => dispatch({type: actionTypes.DEC_QUANTITY, priceDeduction: cost})
     }
 }
 

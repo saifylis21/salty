@@ -7,8 +7,8 @@ const OrderSummary = (props) => {
         <div>
             <h3>{props.name}</h3>
             <h4>Quantity: {props.quantity}</h4>
-            <Button clicked={props.dec}>-</Button>
-            <Button clicked={props.inc}>+</Button>
+            <Button clicked={() => props.dec(props.cost)}>-</Button>
+            <Button clicked={() => props.inc(props.cost)}>+</Button>
             <h4>Total Price: {props.totalPrice}</h4>
             <Button clicked={props.continue}>Checkout</Button>
         </div>
