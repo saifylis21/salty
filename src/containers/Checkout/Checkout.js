@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import Input from '../../components/UI/Input/Input';
+import axios from '../../axios-main';
+import Button from '../../components/UI/Button/Button';
 
 const Checkout = (props) => {
 
@@ -78,14 +80,21 @@ const Checkout = (props) => {
         },
     });
 
-    useEffect(() => {
-        // const query = new URLSearchParams(props.location.search);
-        // console.log(query.entries());
-        // const orderInfo = {};
-
-    },[])
-
-
+    const orderHandler = (event) => {
+        event.preventDefault();
+        const dummyOrder = {
+            name: "SALT LAMP",
+            quantity: 10,
+            price: 69420
+        }
+        axios.post('/orders.json', dummyOrder)
+        .then(response => {
+            this.props.history.push('/');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
 
     const inputChangedHandler = (event, inputIdentifier) => {
         const updatedOrderForm = {
@@ -107,18 +116,24 @@ const Checkout = (props) => {
         });
     }
 
-    let form = formElementsArray.map(formElement => (
-        <Input
-            key={formElement.id}
-            elementType={formElement.config.elementType}
-            elementConfig={formElement.config.elementConfig}
-            value={formElement.config.value}
-            changed={(event) => inputChangedHandler(event, formElement.id)}
-            // shouldValidate={formElement.config.validation}
-            // invalid={!formElement.config.valid}
-            // touched={formElement.config.touched}
-        />
-    ));
+    let form = (
+        <form onSubmit={orderHandler}>
+            {formElementsArray.map(formElement => (
+                <Input
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    changed={(event) => inputChangedHandler(event, formElement.id)}
+                    // shouldValidate={formElement.config.validation}
+                    // invalid={!formElement.config.valid}
+                    // touched={formElement.config.touched}
+                />
+            ))}
+            <Button>WOW</Button>
+        </form>
+    )
+
 
 
     return (
