@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import Input from '../../components/UI/Input/Input';
+import { connect } from 'react-redux';
 import axios from '../../axios-main';
 import Button from '../../components/UI/Button/Button';
 
@@ -82,14 +83,19 @@ const Checkout = (props) => {
 
     const orderHandler = (event) => {
         event.preventDefault();
+        const formData = {}
+        for(let formElementIdentifier in orderForm) {
+            formData[formElementIdentifier] = orderForm[formElementIdentifier].value;
+        }
         const dummyOrder = {
-            name: "SALT LAMP",
-            quantity: 10,
-            price: 69420
+            name: props.productName,
+            quantity: props.totalPrice,
+            price: props.quantity,
+            deliveryData: formData
         }
         axios.post('/orders.json', dummyOrder)
         .then(response => {
-            this.props.history.push('/');
+            props.history.push('/');
         })
         .catch(err => {
             console.log(err);
@@ -147,4 +153,12 @@ const Checkout = (props) => {
     )
 }
 
-export default Checkout;
+const mapStateToProps = state => {
+    return {
+        productName: state.productName,
+        totalPrice: state.totalPrice,
+        quantity: state.quantity
+    };
+}
+
+export default connect(mapStateToProps, undefined)(Checkout);

@@ -72,6 +72,7 @@ const Product = (props) => {
 
 const mapStateToProps = state => {
     return {
+        productName: state.productName,
         totalPrice: state.totalPrice,
         quantity: state.quantity
     };
@@ -79,7 +80,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        inc: (cost) => dispatch({type: actionTypes.INC_QUANTITY, priceAddition: cost}),
+        inc: (cost, name) => dispatch({type: actionTypes.INC_QUANTITY, priceAddition: cost, name: name}),
         dec: (cost) => dispatch({type: actionTypes.DEC_QUANTITY, priceDeduction: cost})
     }
 }

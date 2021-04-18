@@ -1,6 +1,7 @@
 import * as actionTypes from './actions';
 
 const initialState = {
+    productName: "",
     totalPrice: 0,
     quantity: 0
 };
@@ -10,6 +11,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.INC_QUANTITY:
             return {
                 ...state,
+                productName: action.name,
                 totalPrice: state.totalPrice + action.priceAddition,
                 quantity: state.quantity + 1
             };
