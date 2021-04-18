@@ -81,6 +81,8 @@ const Checkout = (props) => {
         },
     });
 
+    const [formIsValid, setFormIsValid] = useState(false);
+
     const orderHandler = (event) => {
         event.preventDefault();
         const formData = {}
@@ -102,14 +104,37 @@ const Checkout = (props) => {
         });
     }
 
+    const checkValidity = (value, rules) => {
+        let isValid = true;
+
+        if(rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
+
+        if(rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid;
+        }
+
+        return isValid;
+    }
+
     const inputChangedHandler = (event, inputIdentifier) => {
         const updatedOrderForm = {
             ...orderForm,
             [inputIdentifier]: {
                 ...orderForm[inputIdentifier],
-                value: event.target.value
+                value: event.target.value,
+                valid: checkValidity(event.target.value, orderForm[inputIdentifier].validation),
+                touched: true
             }
         }
+
+        let validForm = true;
+        for (let inputIdentifier in updatedOrderForm) {
+            validForm = updatedOrderForm[inputIdentifier].valid && validForm;
+        }
+
+        setFormIsValid(validForm);
         setOrderForm(updatedOrderForm);
     }
 
@@ -131,12 +156,12 @@ const Checkout = (props) => {
                     elementConfig={formElement.config.elementConfig}
                     value={formElement.config.value}
                     changed={(event) => inputChangedHandler(event, formElement.id)}
-                    // shouldValidate={formElement.config.validation}
-                    // invalid={!formElement.config.valid}
-                    // touched={formElement.config.touched}
+                    shouldValidate={formElement.config.validation}
+                    invalid={!formElement.config.valid}
+                    touched={formElement.config.touched}
                 />
             ))}
-            <Button>WOW</Button>
+            <Button disabled={!formIsValid}>Place Order</Button>
         </form>
     )
 
