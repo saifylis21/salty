@@ -7,7 +7,7 @@ import ProductCard from './ProductCard/ProductCard';
 import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../../hoc/Aux/Aux';
-import * as actionTypes from '../../store/actions';
+import * as quantityActions from '../../store/actions/index';
 
 
 const Product = (props) => {
@@ -53,7 +53,7 @@ const Product = (props) => {
 
     return (
         <Aux>
-            <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
+            {purchasing && <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
                 <OrderSummary
                     name={product.name}
                     totalPrice={props.totalPrice}
@@ -63,7 +63,7 @@ const Product = (props) => {
                     dec={props.dec}
                     cost={product.price}
                 />
-            </Modal>
+            </Modal>}
             {card}
         </Aux>
     );
@@ -80,8 +80,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        inc: (cost, name) => dispatch({type: actionTypes.INC_QUANTITY, priceAddition: cost, name: name}),
-        dec: (cost) => dispatch({type: actionTypes.DEC_QUANTITY, priceDeduction: cost})
+        inc: (cost, name) => dispatch(quantityActions.incQuantity(cost, name)),
+        dec: (cost) => dispatch(quantityActions.decQuantity(cost))
     }
 }
 

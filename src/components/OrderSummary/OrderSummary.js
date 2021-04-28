@@ -3,6 +3,7 @@ import React from 'react';
 import Button from '../../components/UI/Button/Button';
 
 const OrderSummary = (props) => {
+    console.log("WDFSDFFSD");
     return (
         <div>
             <h3>{props.name}</h3>

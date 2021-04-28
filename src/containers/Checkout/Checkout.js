@@ -89,13 +89,13 @@ const Checkout = (props) => {
         for(let formElementIdentifier in orderForm) {
             formData[formElementIdentifier] = orderForm[formElementIdentifier].value;
         }
-        const dummyOrder = {
+        const finalOrder = {
             name: props.productName,
             quantity: props.totalPrice,
             price: props.quantity,
             deliveryData: formData
         }
-        axios.post('/orders.json', dummyOrder)
+        axios.post('/orders.json', finalOrder)
         .then(response => {
             props.history.push('/');
         })
