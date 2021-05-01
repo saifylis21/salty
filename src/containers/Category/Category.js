@@ -22,7 +22,6 @@ const Category = (props) => {
         <div>
             <CategoryItems categoryItems={categoryItems} category={category} />
         </div>
-
     )
 }
 

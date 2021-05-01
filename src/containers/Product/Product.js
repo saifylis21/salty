@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from '../../axios-main';
 import { connect } from 'react-redux';
 
-import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import PlacingOrder from '../../components/PlacingOrder/PlacingOrder';
 import ProductCard from './ProductCard/ProductCard';
 import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
@@ -54,7 +54,7 @@ const Product = (props) => {
     return (
         <Aux>
             {purchasing && <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
-                <OrderSummary
+                <PlacingOrder
                     name={product.name}
                     totalPrice={props.totalPrice}
                     quantity={props.quantity}
@@ -72,9 +72,9 @@ const Product = (props) => {
 
 const mapStateToProps = state => {
     return {
-        productName: state.productName,
-        totalPrice: state.totalPrice,
-        quantity: state.quantity
+        productName: state.quantity.productName,
+        totalPrice: state.quantity.totalPrice,
+        quantity: state.quantity.quantity
     };
 }
 

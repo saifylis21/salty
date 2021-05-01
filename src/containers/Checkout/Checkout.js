@@ -4,6 +4,7 @@ import Input from '../../components/UI/Input/Input';
 import { connect } from 'react-redux';
 import axios from '../../axios-main';
 import Button from '../../components/UI/Button/Button';
+import OrderSummary from '../../components/OrderSummary/OrderSummary';
 
 const Checkout = (props) => {
 
@@ -173,16 +174,20 @@ const Checkout = (props) => {
             <h1>check dis shet mothertrucker</h1>
             <h1>check dis shet mothertrucker</h1>
             {form}
-            <h1>CHECKOUT SUMMARY</h1>
+            <OrderSummary 
+                productName= {props.productName}
+                totalPrice= {props.totalPrice}
+                quantity= {props.quantity}
+            />
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        productName: state.productName,
-        totalPrice: state.totalPrice,
-        quantity: state.quantity
+        productName: state.quantity.productName,
+        totalPrice: state.quantity.totalPrice,
+        quantity: state.quantity.quantity
     };
 }
 

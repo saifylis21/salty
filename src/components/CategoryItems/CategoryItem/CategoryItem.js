@@ -8,7 +8,6 @@ const CategoryItem = (props) => (
             <h1>{props.name}</h1>
         </div>
     </Link>
-
 );
 
 export default CategoryItem;

@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../../axios-main';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import classes from './Browse.module.css';
+// import Spinner from '../../components/UI/Spinner/Spinner';
 import Categories from '../../components/Categories/Categories';
+import * as browseActions from '../../store/actions/index';
 
-const Browse = () => {
-    const [categories, setCategories] = useState({});
+const Browse = (props) => {
+
+    const {onInitCategories, categories} = props;
 
     useEffect(() => {
-        axios.get('/categories.json')
-        .then((response) => {
-            setCategories(response.data)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }, []);
+        onInitCategories();
+    }, [onInitCategories]);
 
     return (
         <div className={classes.Browse}>
             <h1>Select a category</h1>
-            <Categories categories={categories} />
+            {categories && <Categories categories={categories} />}
         </div>
     );
 };
 
-export default Browse;
+const mapStateToProps = state => {
+    return {
+        categories: state.browse.categories,
+        error: state.browse.error
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInitCategories: () => dispatch(browseActions.initCategories())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Browse);

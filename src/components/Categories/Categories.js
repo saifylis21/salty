@@ -4,8 +4,7 @@ import classes from './Categories.module.css';
 import CategoryCard from './CategoryCard/CategoryCard';
 
 const Categories = (props) => {
-
-    let categories = null;
+    let categories;
     categories = Object.keys(props.categories).map((categoryKey) => {
         let category = props.categories[categoryKey];
         return (
