@@ -81,7 +81,6 @@ const Checkout = (props) => {
             touched: false
         },
     });
-
     const [formIsValid, setFormIsValid] = useState(false);
 
     const orderHandler = (event) => {

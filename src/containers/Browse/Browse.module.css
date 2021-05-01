@@ -6,3 +6,7 @@
 .Browse h1 {
     font-weight: 600;
 }
+
+.errorMessage {
+    margin-top: 150px;
+}

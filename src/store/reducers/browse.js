@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     categories: null,
-    error: false
+    error: true
 };
 
 const reducer = (state = initialState, action) => {
