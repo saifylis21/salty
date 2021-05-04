@@ -5,7 +5,7 @@ import ProductCard from './ProductCard/ProductCard';
 
 const FeaturedProducts = (props) => {
     
-    let cards = null;
+    let cards;
     cards = Object.keys(props.cardInfo).map((cardKey) => {
         let card = props.cardInfo[cardKey];
         if (card.featured) {

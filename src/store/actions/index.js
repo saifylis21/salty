@@ -6,3 +6,7 @@ export {
 export {
     initCategories
 } from './browse';
+
+export {
+    initCardInfo
+} from './home';

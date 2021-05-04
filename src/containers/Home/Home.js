@@ -1,28 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../../axios-main';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import classes from './Home.module.css';
 
 import Aux from '../../hoc/Aux/Aux';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import FeaturedProducts from '../../components/FeaturedProducts/FeaturedProducts';
+import * as homeActions from '../../store/actions/index';
 
-const Home = () => {
-    const [cardInfo, setCardInfo] = useState({});
+const Home = (props) => {
+    const {onInitCardInfo, cardInfo, error} = props;
 
     useEffect(() => {
-        axios.get('/cardInfo.json')
-        .then((response) => {
-            setCardInfo(response.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }, []);
+        onInitCardInfo()
+    }, [onInitCardInfo]);
+
+
+    let showCardInfo = error ? <p className={classes.errorMessage}>Unable to load at the moment :(</p> : <Spinner />
+
+    if(cardInfo) {
+        showCardInfo = (
+            <Aux>
+                <h1 style={{margin: "100px"}}>CAUSORAL</h1>
+                <FeaturedProducts cardInfo={cardInfo}/>
+            </Aux>
+        )
+    }
 
     return (
-        <Aux>
-            <h1 style={{margin: "100px"}}>CAUSORAL</h1>
-            <FeaturedProducts cardInfo={cardInfo}/>
-        </Aux>
+        <>
+            {showCardInfo}
+        </>
     );
 }
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        cardInfo: state.home.cardInfo,
+        error: state.home.error
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInitCardInfo: () => dispatch(homeActions.initCardInfo())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -10,13 +10,15 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
 import quantityReducer from './store/reducers/quantity';
 import browseReducer from './store/reducers/browse';
+import homeReducer from './store/reducers/home';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   quantity: quantityReducer,
-  browse: browseReducer
+  browse: browseReducer,
+  home: homeReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(
