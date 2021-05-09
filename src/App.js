@@ -6,12 +6,14 @@ import Browse from './containers/Browse/Browse';
 import Checkout from './containers/Checkout/Checkout';
 import Category from './containers/Category/Category';
 import Product from './containers/Product/Product';
+import Auth from './containers/Auth/Auth';
 
 function App() {
   return (
     <div>
       <Layout>
         <Switch>
+          <Route path="/auth" exact component={Auth} />
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/product/:id" exact component={Product} />
           <Route path="/browse/:category" exact component={Category} />
