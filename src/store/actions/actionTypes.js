@@ -7,4 +7,6 @@ export const FETCH_CATEGORIES_FAILED = 'FETCH_CATEGORIES_FAILED';
 export const SET_CARDINFO = 'SET_CARDINFO';
 export const FETCH_CARDINFO_FAILED = 'FETCH_CARDINFO_FAILED';
 
-// export const SET_CATEGORY
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';

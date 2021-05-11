@@ -10,3 +10,10 @@ export {
 export {
     initCardInfo
 } from './home';
+
+export {
+    auth,
+    authStart,
+    authSuccess,
+    authFail
+} from './auth';

@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 
-import classes from './Auth.module.css';
+// import classes from './Auth.module.css';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
+import * as authActions from '../../store/actions/index';
 
-const Auth = () => {
+const Auth = (props) => {
     const [authForm, setAuthForm] = useState({
         email: {
             elementType: 'input',
@@ -91,12 +93,14 @@ const Auth = () => {
         });
     }
 
-    const submitHandler = () => {
-        if(isLogin) {
-            // log me in
-        } else {
-            
-        }
+    const submitHandler = (event) => {
+        event.preventDefault();
+        props.onAuth(authForm.email.value, authForm.password.value)
+        // if(isLogin) {
+        //     // log me in
+        // } else {
+        //     axios.post()
+        // }
     }
 
     let form = (
@@ -119,40 +123,19 @@ const Auth = () => {
 
     return (
         <div>
-            <h1>dsfds</h1>
-            <h1>dsfds</h1>
-            <h1>dsfds</h1>
             <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-
             {form}
             <Button clicked={switchAuthModeHandler} >
                 {isLogin ? 'Create new account' : 'Login with existing account'}
             </Button>
         </div>
-        // <section className={classes.auth}>
-        //   <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-        //   <form onSubmit={submitHandler}>
-        //     <div className={classes.control}>
-        //       <label htmlFor='email'>Your Email</label>
-        //       <input type='email' id='email' required />
-        //     </div>
-        //     <div className={classes.control}>
-        //       <label htmlFor='password'>Your Password</label>
-        //       <input type='password' id='password' required/>
-        //     </div>
-        //     <div className={classes.actions}>
-        //       <button>{isLogin ? 'Login' : 'Create Account'}</button>
-        //       <button
-        //         type='button'
-        //         className={classes.toggle}
-        //         onClick={switchAuthModeHandler}
-        //       >
-        //         {isLogin ? 'Create new account' : 'Login with existing account'}
-        //       </button>
-        //     </div>
-        //   </form>
-        // </section>
       );
 }
 
-export default Auth;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAuth: (email, password) => dispatch(authActions.auth(email, password))
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Auth);
