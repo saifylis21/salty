@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 // import classes from './Auth.module.css';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import * as authActions from '../../store/actions/index';
 
 const Auth = (props) => {
@@ -95,12 +96,7 @@ const Auth = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        props.onAuth(authForm.email.value, authForm.password.value)
-        // if(isLogin) {
-        //     // log me in
-        // } else {
-        //     axios.post()
-        // }
+        props.onAuth(authForm.email.value, authForm.password.value, isLogin);
     }
 
     let form = (
@@ -119,11 +115,21 @@ const Auth = (props) => {
             ))}
             <Button disabled={!formIsValid}>{isLogin ? 'Log In' : 'Sign Up'}</Button>
         </form>
-    )
+    );
+
+    if(props.loading) {
+        form = <Spinner />
+    }
+
+    let errorMessage = null;
+    if(props.error) {
+        errorMessage = (<p>{props.error.message}</p>);
+    }
 
     return (
         <div>
             <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+            {errorMessage}
             {form}
             <Button clicked={switchAuthModeHandler} >
                 {isLogin ? 'Create new account' : 'Login with existing account'}
@@ -132,10 +138,17 @@ const Auth = (props) => {
       );
 }
 
+const mapStateToProps = (state) => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAuth: (email, password) => dispatch(authActions.auth(email, password))
+        onAuth: (email, password, isLogin) => dispatch(authActions.auth(email, password, isLogin))
     };
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

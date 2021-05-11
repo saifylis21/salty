@@ -11,6 +11,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import quantityReducer from './store/reducers/quantity';
 import browseReducer from './store/reducers/browse';
 import homeReducer from './store/reducers/home';
+import authReducer from './store/reducers/auth';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,8 +19,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   quantity: quantityReducer,
   browse: browseReducer,
-  home: homeReducer
-})
+  home: homeReducer,
+  auth: authReducer
+});
 
 const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
