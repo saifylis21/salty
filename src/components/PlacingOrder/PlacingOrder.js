@@ -10,7 +10,7 @@ const PlacingOrder = (props) => {
             <Button clicked={() => props.dec(props.cost)}>-</Button>
             <Button clicked={() => props.inc(props.cost, props.name)}>+</Button>
             <h4>Total Price: {props.totalPrice}</h4>
-            <Button clicked={props.continue}>Checkout</Button>
+            <Button clicked={props.continue}>{props.isAuth ? 'Proceed To Checkout' : 'User Account required for proceeding further BITCH'}</Button>
         </div>
     );
 };

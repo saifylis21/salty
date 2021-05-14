@@ -35,7 +35,12 @@ const Product = (props) => {
 
 
     const purchaseContinueHandler = () => {
-        props.history.push('/checkout');
+        if(props.isAuthenticated) {
+            props.history.push('/checkout');
+        } else {
+            props.history.push('/auth');
+        }
+        
     }
 
     const purchaseCancelHandler = () => {
@@ -48,7 +53,7 @@ const Product = (props) => {
             <ProductCard imgURL={product.imgURL} name={product.name} price={product.price} />
             <Button clicked={() => {setPurchasing(true)}}>Order now</Button>
         </Aux>
-    }
+    };
 
     return (
         <Aux>
@@ -61,6 +66,7 @@ const Product = (props) => {
                     inc={props.inc}
                     dec={props.dec}
                     cost={product.price}
+                    isAuth={props.isAuthenticated}
                 />
             </Modal>}
             {card}
@@ -73,7 +79,8 @@ const mapStateToProps = state => {
     return {
         productName: state.quantity.productName,
         totalPrice: state.quantity.totalPrice,
-        quantity: state.quantity.quantity
+        quantity: state.quantity.quantity,
+        isAuthenticated: state.auth.token !== null
     };
 }
 

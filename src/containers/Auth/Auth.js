@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 // import classes from './Auth.module.css';
 import Button from '../../components/UI/Button/Button';
@@ -97,7 +98,6 @@ const Auth = (props) => {
     const submitHandler = (event) => {
         event.preventDefault();
         props.onAuth(authForm.email.value, authForm.password.value, isLogin);
-        props.history.push('/');
     }
 
     let form = (
@@ -127,8 +127,14 @@ const Auth = (props) => {
         errorMessage = (<p>{props.error.message}</p>);
     }
 
+    let authRedirect = null;
+    if(props.isAuthenticated) {
+        authRedirect = <Redirect to="/"/>
+    }
+
     return (
         <div>
+            {authRedirect}
             <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
             {errorMessage}
             {form}
@@ -142,7 +148,8 @@ const Auth = (props) => {
 const mapStateToProps = (state) => {
     return {
         loading: state.auth.loading,
-        error: state.auth.error
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null
     }
 }
 
