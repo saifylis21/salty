@@ -6,7 +6,7 @@ import CategoryItems from '../../components/CategoryItems/CategoryItems';
 const Category = (props) => {
 
     const [categoryItems, setCategoryItems] = useState("");
-    const category = props.match.params.category
+    const category = props.match.params.category;
 
     useEffect(() => {
         axios.get('/cardInfo.json')

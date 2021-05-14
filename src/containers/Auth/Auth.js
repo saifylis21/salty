@@ -97,6 +97,7 @@ const Auth = (props) => {
     const submitHandler = (event) => {
         event.preventDefault();
         props.onAuth(authForm.email.value, authForm.password.value, isLogin);
+        props.history.push('/');
     }
 
     let form = (

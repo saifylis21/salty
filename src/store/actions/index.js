@@ -15,5 +15,10 @@ export {
     auth,
     authStart,
     authSuccess,
-    authFail
+    authFail,
+    logout
 } from './auth';
+
+export {
+    fetchOrders
+} from './orders';

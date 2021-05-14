@@ -9,7 +9,6 @@ import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../../hoc/Aux/Aux';
 import * as quantityActions from '../../store/actions/index';
 
-
 const Product = (props) => {
     const productId = props.match.params.id;
     const [product, setProduct] = useState({});
