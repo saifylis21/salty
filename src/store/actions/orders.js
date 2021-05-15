@@ -8,6 +8,13 @@ export const fetchOrdersFailed = (error) => {
     };
 };
 
+export const fetchOrdersSuccess = (orders) => {
+    return {
+        type: actionTypes.FETCH_ORDERS_SUCCESS,
+        orders: orders
+    }
+}
+
 export const fetchOrdersStart = () => {
     return {
         type: actionTypes.FETCH_ORDERS_START
@@ -17,6 +24,13 @@ export const fetchOrdersStart = () => {
 export const fetchOrders = (token, userId) => {
     return dispatch => {
         dispatch(fetchOrdersStart());
-        axios.get('/orders.json?auth=' + token)
+        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        axios.get('/orders.json' + queryParams)
+        .then((response) => {
+            dispatch(fetchOrdersSuccess(response.data))
+        })
+        .catch((error) => {
+            dispatch(fetchOrdersFailed(error))
+        })
     }
 }

@@ -91,9 +91,10 @@ const Checkout = (props) => {
         }
         const finalOrder = {
             name: props.productName,
-            quantity: props.totalPrice,
-            price: props.quantity,
-            deliveryData: formData
+            quantity: props.quantity,
+            price: props.totalPrice,
+            deliveryData: formData,
+            userId: props.userId
         }
         axios.post('/orders.json?auth=' + props.token, finalOrder)
         .then(response => {
@@ -187,7 +188,8 @@ const mapStateToProps = state => {
         productName: state.quantity.productName,
         totalPrice: state.quantity.totalPrice,
         quantity: state.quantity.quantity,
-        token: state.auth.token
+        token: state.auth.token,
+        userId: state.auth.userId
     };
 }
 

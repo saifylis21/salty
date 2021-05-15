@@ -12,6 +12,7 @@ import quantityReducer from './store/reducers/quantity';
 import browseReducer from './store/reducers/browse';
 import homeReducer from './store/reducers/home';
 import authReducer from './store/reducers/auth';
+import ordersReducer from './store/reducers/orders';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   quantity: quantityReducer,
   browse: browseReducer,
   home: homeReducer,
-  auth: authReducer
+  auth: authReducer,
+  orders: ordersReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
