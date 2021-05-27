@@ -57,6 +57,7 @@ const Product = (props) => {
 
     return (
         <Aux>
+            {card}
             {purchasing && <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
                 <PlacingOrder
                     name={product.name}
@@ -69,7 +70,6 @@ const Product = (props) => {
                     isAuth={props.isAuthenticated}
                 />
             </Modal>}
-            {card}
         </Aux>
     );
 

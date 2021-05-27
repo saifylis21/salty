@@ -23,8 +23,8 @@ const Home = (props) => {
                 <h1 style={{margin: "100px"}}>CAUSORAL</h1>
                 <FeaturedProducts cardInfo={cardInfo}/>
             </Aux>
-        )
-    }
+        );
+    };
 
     return (
         <>
