@@ -23,3 +23,10 @@ export class NavigationItems {
     static auth = 'Log In/Sign Up';
     static logout = 'Logout';
 }
+
+export class OrderSummary {
+    static orderSummary = 'Order Summary';
+    static productName = 'Product Name: ';
+    static quantity = 'Quantity: ';
+    static totalPrice = 'Total Price: ';
+}
