@@ -14,18 +14,14 @@ const Product = (props) => {
     const [product, setProduct] = useState({});
     const [purchasing, setPurchasing] = useState(false);
 
+    // abd
     useEffect(() => {
-        axios.get('/cardInfo.json')
+        axios.get(`/cardInfo/${productId}.json`)
         .then((response) => {
-            Object.keys(response.data).forEach((key) => {
-                let item = response.data[key];
-                if (key === productId) {
-                    setProduct({
-                        imgURL: item.imgURL,
-                        name: item.name,                        
-                        price: item.price             
-                    });
-                }
+            setProduct({
+                imgURL: response.data.imgURL,
+                name: response.data.name,                        
+                price: response.data.price             
             });
         })
         .catch((err) => {
@@ -40,7 +36,6 @@ const Product = (props) => {
         } else {
             props.history.push('/auth');
         }
-        
     }
 
     const purchaseCancelHandler = () => {

@@ -5,7 +5,6 @@ import Aux from '../../../hoc/Aux/Aux';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
-
     render () {
         return (
             <Aux>

@@ -23,3 +23,7 @@ export {
 export {
     fetchOrders
 } from './orders';
+
+export {
+    placeOrder
+} from './checkout';

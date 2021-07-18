@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 
 import Input from '../../components/UI/Input/Input';
 import { connect } from 'react-redux';
-import axios from '../../axios-main';
 import Button from '../../components/UI/Button/Button';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import * as CheckoutActions from '../../store/actions/index';
+import CheckMarkerSpinner from '../../components/UI/CheckMarkSpinner/CheckMarkSpinner';
 
 const Checkout = (props) => {
 
@@ -96,13 +97,8 @@ const Checkout = (props) => {
             deliveryData: formData,
             userId: props.userId
         }
-        axios.post('/orders.json?auth=' + props.token, finalOrder)
-        .then(response => {
-            props.history.push('/');
-        })
-        .catch(err => {
-            console.log(err);
-        });
+
+        props.placeOrder(props.token, finalOrder);
     }
 
     const checkValidity = (value, rules) => {
@@ -149,24 +145,46 @@ const Checkout = (props) => {
     }
 
     let form = (
-        <form onSubmit={orderHandler}>
-            {formElementsArray.map(formElement => (
-                <Input
-                    key={formElement.id}
-                    elementType={formElement.config.elementType}
-                    elementConfig={formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    changed={(event) => inputChangedHandler(event, formElement.id)}
-                    shouldValidate={formElement.config.validation}
-                    invalid={!formElement.config.valid}
-                    touched={formElement.config.touched}
-                />
-            ))}
-            <Button disabled={!formIsValid}>Place Order</Button>
-        </form>
-    )
+        <>
+            <form onSubmit={orderHandler}>
+                {formElementsArray.map(formElement => (
+                    <Input
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        changed={(event) => inputChangedHandler(event, formElement.id)}
+                        shouldValidate={formElement.config.validation}
+                        invalid={!formElement.config.valid}
+                        touched={formElement.config.touched}
+                    />
+                ))}
+                <Button disabled={!formIsValid}>Place Order</Button>
+            </form>
+            
+            <OrderSummary 
+                productName= {props.productName}
+                totalPrice= {props.totalPrice}
+                quantity= {props.quantity}
+            />
+        </>
+    );
 
+    if(props.loading) {
+        form = (
+            <CheckMarkerSpinner />
+        );
+    };
 
+    if(props.orderSuccess) {
+        form = (
+            <>
+                <CheckMarkerSpinner check />
+                <h3>Order placed successfully!</h3>
+                <Button clicked={() => props.history.push('/')}>Go To Home</Button>
+            </>
+        );
+    };
 
     return (
         <div>
@@ -174,14 +192,9 @@ const Checkout = (props) => {
             <h1>check dis shet mothertrucker</h1>
             <h1>check dis shet mothertrucker</h1>
             {form}
-            <OrderSummary 
-                productName= {props.productName}
-                totalPrice= {props.totalPrice}
-                quantity= {props.quantity}
-            />
         </div>
-    )
-}
+    );
+};
 
 const mapStateToProps = state => {
     return {
@@ -189,8 +202,16 @@ const mapStateToProps = state => {
         totalPrice: state.quantity.totalPrice,
         quantity: state.quantity.quantity,
         token: state.auth.token,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        loading: state.checkout.loading,
+        orderSuccess: state.checkout.orderSuccess
     };
-}
+};
 
-export default connect(mapStateToProps, undefined)(Checkout);
+const mapDispatchToProps = dispatch => {
+    return {
+        placeOrder: (token, finalOrder) => dispatch(CheckoutActions.placeOrder(token, finalOrder))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

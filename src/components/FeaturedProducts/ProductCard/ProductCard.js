@@ -12,7 +12,6 @@ const ProductCard = (props) => (
             <p>{constants.ProductCard.price}{props.price}</p>
         </div>
     </Link>
-
 );
 
 export default ProductCard;

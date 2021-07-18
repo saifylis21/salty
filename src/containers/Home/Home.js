@@ -14,7 +14,6 @@ const Home = (props) => {
         onInitCardInfo()
     }, [onInitCardInfo]);
 
-
     let showCardInfo = error ? <p className={classes.errorMessage}>Unable to load at the moment :(</p> : <Spinner />
 
     if(cardInfo) {
