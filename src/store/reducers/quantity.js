@@ -21,6 +21,13 @@ const reducer = (state = initialState, action) => {
                 totalPrice: state.totalPrice - action.priceDeduction,
                 quantity: state.quantity - 1
             };
+        case actionTypes.RESET_QUANTITY:
+            return {
+                ...state,
+                productName: "",
+                totalPrice: 0,
+                quantity: 0
+            }
         default:
             return state;
     }

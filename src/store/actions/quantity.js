@@ -14,3 +14,9 @@ export const decQuantity = (cost) => {
         priceDeduction: cost
     }
 }
+
+export const resetQuantity = () => {
+    return {
+        type: actionTypes.RESET_QUANTITY
+    }
+}

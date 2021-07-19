@@ -14,6 +14,7 @@ import homeReducer from './store/reducers/home';
 import authReducer from './store/reducers/auth';
 import ordersReducer from './store/reducers/orders';
 import checkoutReducer from './store/reducers/checkout';
+import categoryReducer from './store/reducers/category';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   home: homeReducer,
   auth: authReducer,
   orders: ordersReducer,
-  checkout: checkoutReducer
+  checkout: checkoutReducer,
+  category: categoryReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

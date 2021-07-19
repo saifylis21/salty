@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Input from '../../components/UI/Input/Input';
 import { connect } from 'react-redux';
@@ -83,6 +83,13 @@ const Checkout = (props) => {
         },
     });
     const [formIsValid, setFormIsValid] = useState(false);
+    const { resetOrder } = props;
+
+    useEffect( () => {
+        return () => {
+            resetOrder();
+        }
+    }, [resetOrder]);
 
     const orderHandler = (event) => {
         event.preventDefault();
@@ -186,6 +193,10 @@ const Checkout = (props) => {
         );
     };
 
+    if(props.error) {
+        form = (<p>Somthing went wrong :(</p>)
+    };
+
     return (
         <div>
             <h1>check dis shet mothertrucker</h1>
@@ -204,13 +215,15 @@ const mapStateToProps = state => {
         token: state.auth.token,
         userId: state.auth.userId,
         loading: state.checkout.loading,
-        orderSuccess: state.checkout.orderSuccess
+        orderSuccess: state.checkout.orderSuccess,
+        error: state.checkout.error
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        placeOrder: (token, finalOrder) => dispatch(CheckoutActions.placeOrder(token, finalOrder))
+        placeOrder: (token, finalOrder) => dispatch(CheckoutActions.placeOrder(token, finalOrder)),
+        resetOrder: () => dispatch(CheckoutActions.orderReset())
     }
 };
 

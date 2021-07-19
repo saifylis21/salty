@@ -14,9 +14,14 @@ export const setCardInfo = (cardInfo) => {
     }
 };
 
+export const setCardInfoStart = () => {
+    return { type: actionTypes.START_SET_CARDINFO };
+};
+
 export const initCardInfo = () => {
     return dispatch => {
-        axios.get('/cardInfo.json')
+        dispatch(setCardInfoStart())
+        axios.get('/cardInfo.json?orderBy="featured"&equalTo=true')
         .then((response) => {
             dispatch(setCardInfo(response.data));
         })

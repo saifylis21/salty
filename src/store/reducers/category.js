@@ -2,40 +2,32 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     loading: false,
-    orderSuccess: false,
-    error: false
-}
+    error: null,
+    categoryItems: null
+};
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case actionTypes.PLACE_ORDER_START:
+        case actionTypes.CATEGORY_FETCH_START:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.PLACE_ORDER_SUCCESS:
+        case actionTypes.CATEGORY_FETCH_SET:
             return {
                 ...state,
                 loading: false,
-                orderSuccess: true
+                error: false,
+                categoryItems: action.categoryItems
             };
-        case actionTypes.PLACE_ORDER_FAILED:
+        case actionTypes.CATEGORY_FETCH_FAIL:
             return {
                 ...state,
-                loading: false,
-                orderSuccess: false,
                 error: true
             };
-        case actionTypes.PLACE_ORDER_RESET:
-            return {
-                ...state,
-                loading: false,
-                orderSuccess: false,
-                error: false
-            }
         default:
             return state;
-    };
-};
+    }
+}
 
 export default reducer;

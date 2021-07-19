@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     cardInfo: null,
-    error: null
+    error: null,
+    loading: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,12 +12,19 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cardInfo: action.cardInfo,
-                error: false
+                error: false,
+                loading: false
             };
         case actionTypes.FETCH_CARDINFO_FAILED:
             return {
                 ...state,
-                error: true
+                error: true,
+                loading: false
+            }
+        case actionTypes.START_SET_CARDINFO:
+            return {
+                ...state,
+                loading: true
             }
         default:
             return state;

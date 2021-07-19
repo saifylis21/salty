@@ -8,13 +8,17 @@ import * as browseActions from '../../store/actions/index';
 
 const Browse = (props) => {
 
-    const {onInitCategories, categories, error} = props;
+    const {onInitCategories, categories, error, loading} = props;
 
     useEffect(() => {
         onInitCategories();
     }, [onInitCategories]);
 
-    let categoriesShow = error ? <p className={classes.errorMessage}>Unable to load at the moment :(</p> : <Spinner />
+    let categoriesShow = error ? <p className={classes.errorMessage}>Unable to load at the moment :(</p> : null;
+
+    if(loading) {
+        categoriesShow = ( <Spinner /> );
+    };
 
     if(categories) {
         categoriesShow = (
@@ -22,8 +26,8 @@ const Browse = (props) => {
                 <h1>Select a category</h1>
                 <Categories categories={categories} />
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <>
@@ -35,7 +39,8 @@ const Browse = (props) => {
 const mapStateToProps = state => {
     return {
         categories: state.browse.categories,
-        error: state.browse.error
+        error: state.browse.error,
+        loading: state.browse.loading
     }
 }
 

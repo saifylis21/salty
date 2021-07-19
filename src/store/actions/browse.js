@@ -14,8 +14,15 @@ export const setCategories = (categories) => {
     }
 };
 
+export const setCategoriesStart = () => {
+    return {
+        type: actionTypes.START_SET_CATEGORIES
+    }
+}
+
 export const initCategories = () => {
     return dispatch => {
+        dispatch(setCategoriesStart())
         axios.get('/categories.json')
         .then((response) => {
             dispatch(setCategories(response.data));

@@ -26,11 +26,39 @@ export const fetchOrders = (token, userId) => {
         dispatch(fetchOrdersStart());
         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
         axios.get('/orders.json' + queryParams)
-        .then((response) => {
-            dispatch(fetchOrdersSuccess(response.data))
+        .then(response => {
+            let orderItems = []
+            for (let key in response.data) {
+                orderItems.push({
+                    key,
+                    ...response.data[key]
+                })
+            }
+            dispatch(fetchOrdersSuccess(orderItems))
         })
         .catch((error) => {
             dispatch(fetchOrdersFailed(error))
+        })
+    }
+}
+
+export const cancelDeleteSuccess = (orderID) => {
+    return { type: actionTypes.CANCEL_ORDER_SUCCESS, orderID };
+}
+
+export const cancelDeleteFail = () => {
+    return { type: actionTypes.CANCEL_ORDER_FAIL };
+}
+
+export const cancelOrder = (token, orderID) => {
+    return dispatch => {
+        dispatch(fetchOrdersStart());
+        axios.delete(`/orders/${orderID}.json?auth=${token}`)
+        .then(response => {
+            dispatch(cancelDeleteSuccess(orderID))
+        })
+        .catch(error => {
+            dispatch(cancelDeleteFail(error))
         })
     }
 }

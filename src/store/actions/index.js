@@ -1,6 +1,7 @@
 export {
     incQuantity,
-    decQuantity
+    decQuantity,
+    resetQuantity
 } from './quantity';
 
 export {
@@ -21,9 +22,15 @@ export {
 } from './auth';
 
 export {
-    fetchOrders
+    fetchOrders,
+    cancelOrder
 } from './orders';
 
 export {
-    placeOrder
+    placeOrder,
+    orderReset
 } from './checkout';
+
+export {
+    initCategory
+} from './category';

@@ -25,6 +25,18 @@ const reducer = (state = initialState, action) => {
                 error: action.error,
                 loading: false
             }
+        case actionTypes.CANCEL_ORDER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                orders: state.orders.filter(order => order.key !== action.orderID)
+            }
+        case actionTypes.CANCEL_ORDER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
         default:
             return state;
     }

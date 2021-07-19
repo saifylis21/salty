@@ -11,11 +11,12 @@ import * as quantityActions from '../../store/actions/index';
 
 const Product = (props) => {
     const productId = props.match.params.id;
+    const {reset} = props;
     const [product, setProduct] = useState({});
     const [purchasing, setPurchasing] = useState(false);
 
-    // abd
     useEffect(() => {
+        reset();
         axios.get(`/cardInfo/${productId}.json`)
         .then((response) => {
             setProduct({
@@ -27,7 +28,7 @@ const Product = (props) => {
         .catch((err) => {
             console.log(err);
         });
-    }, [productId]);
+    }, [productId, reset]);
 
 
     const purchaseContinueHandler = () => {
@@ -82,7 +83,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         inc: (cost, name) => dispatch(quantityActions.incQuantity(cost, name)),
-        dec: (cost) => dispatch(quantityActions.decQuantity(cost))
+        dec: (cost) => dispatch(quantityActions.decQuantity(cost)),
+        reset: () => dispatch(quantityActions.resetQuantity())
     }
 }
 
