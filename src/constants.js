@@ -8,7 +8,7 @@ export class PlacingOrder {
     static add = '+';
     static totalPrice = 'Total Price: ';
     static proceed = 'Proceed To Checkout';
-    static signIn = 'User Account required for proceeding further BITCH';
+    static signIn = 'User Account required for proceeding further';
 };
 
 export class ProductCard {

@@ -12,6 +12,7 @@
     box-sizing: border-box;
     display: block;
     font-weight: bold;
+    margin: 0 0px;
 }
 
 .NavigationItem a:hover,
@@ -32,6 +33,7 @@
     .NavigationItem a {
         height: 100%;
         font-weight: bold;
+        margin: 0 10px;
     }
     
     .NavigationItem a:hover,

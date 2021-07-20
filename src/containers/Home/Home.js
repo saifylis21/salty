@@ -5,6 +5,7 @@ import classes from './Home.module.css';
 import Aux from '../../hoc/Aux/Aux';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import FeaturedProducts from '../../components/FeaturedProducts/FeaturedProducts';
+import ImageSlider from '../../components/UI/ImageSlider/ImageSlider';
 import * as homeActions from '../../store/actions/index';
 
 const Home = (props) => {
@@ -23,7 +24,7 @@ const Home = (props) => {
     if(cardInfo) {
         showCardInfo = (
             <Aux>
-                <h1 style={{margin: "100px"}}>CAUSORAL</h1>
+                <ImageSlider />
                 <FeaturedProducts cardInfo={cardInfo}/>
             </Aux>
         );

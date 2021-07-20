@@ -17,13 +17,12 @@ const Browse = (props) => {
     let categoriesShow = error ? <p className={classes.errorMessage}>Unable to load at the moment :(</p> : null;
 
     if(loading) {
-        categoriesShow = ( <Spinner /> );
+        categoriesShow = ( <div className={classes.Browse}><Spinner /></div> );
     };
 
     if(categories) {
         categoriesShow = (
             <div className={classes.Browse}>
-                <h1>Select a category</h1>
                 <Categories categories={categories} />
             </div>
         );

@@ -19,8 +19,7 @@ const Orders = (props) => {
             let order = orders[orderKey];
             return (
                 <div key={order.key}>
-                    <Order name={order.name} quantity={order.quantity} price={order.price} />
-                    <Button clicked={() => setTobeDeleatedOrderID(order.key)}>Cancel Order</Button>
+                    <Order name={order.name} quantity={order.quantity} price={order.price} id={order.key} deleteID={setTobeDeleatedOrderID}/>
                 </div>
             );
         });

@@ -9,26 +9,38 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.SET_CARDINFO:
-            return {
-                ...state,
-                cardInfo: action.cardInfo,
-                error: false,
-                loading: false
-            };
+            return setCardInfo(state, action);
         case actionTypes.FETCH_CARDINFO_FAILED:
-            return {
-                ...state,
-                error: true,
-                loading: false
-            }
+            return fetchCardInfoFailed(state, action);
         case actionTypes.START_SET_CARDINFO:
-            return {
-                ...state,
-                loading: true
-            }
+            return startSetCardInfo(state, action);
         default:
             return state;
-    }
+    };
+};
+
+const setCardInfo = (state, action) => {
+    return {
+        ...state,
+        cardInfo: action.cardInfo,
+        error: false,
+        loading: false
+    };
+};
+
+const fetchCardInfoFailed = (state, action) => {
+    return {
+        ...state,
+        error: true,
+        loading: false
+    };
+};
+
+const startSetCardInfo = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
 };
 
 export default reducer;

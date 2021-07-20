@@ -13,9 +13,12 @@ const Categories = (props) => {
     });
 
     return (
-        <div className={classes.Categories} >
-            {categories}
-        </div>
+        <>
+            <h1>Select a category</h1>
+            <div className={classes.Categories} >
+                {categories}
+            </div>
+        </>
     );
 };
 

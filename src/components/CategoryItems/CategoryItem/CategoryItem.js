@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import classes from './Category.module.css';
+import classes from './CategoryItem.module.css';
 
 const CategoryItem = (props) => (
     <Link to={`/product/${props.itemId}`}>
-        <div>
+        <div className={classes.CategoryItem}>
             <img className={classes.Image} src={props.img} alt="" />
-            <h1>{props.name}</h1>
+            <h3>{props.name}</h3>
         </div>
     </Link>
 );

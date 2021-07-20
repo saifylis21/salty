@@ -14,9 +14,12 @@ const FeaturedProducts = (props) => {
     });
 
     return (
-        <div className={classes.FeaturedProducts}>
-            {cards}
-        </div>
+        <>
+            <h1 style={{textAlign:"center"}}>Featured Products</h1>
+            <div className={classes.FeaturedProducts}>
+                {cards}
+            </div>
+        </>
     );
 }
 

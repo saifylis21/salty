@@ -9,37 +9,57 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.FETCH_ORDERS_START:
-            return {
-                ...state,
-                loading: true
-            }
+            return fetchOrdersStart(state, action);
         case actionTypes.FETCH_ORDERS_SUCCESS:
-            return {
-                ...state,
-                orders: action.orders,
-                loading: false
-            }
+            return fetchOrdersSuccess(state, action);
         case actionTypes.FETCH_ORDERS_FAILED:
-            return {
-                ...state,
-                error: action.error,
-                loading: false
-            }
+            return fetchOrdersFailed(state, action);
         case actionTypes.CANCEL_ORDER_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                orders: state.orders.filter(order => order.key !== action.orderID)
-            }
+            return cancelOrderSuccess(state, action);
         case actionTypes.CANCEL_ORDER_FAIL:
-            return {
-                ...state,
-                loading: false,
-                error: action.error
-            }
+            return cancelOrderFail(state, action);
         default:
             return state;
-    }
-}
+    };
+};
+
+const fetchOrdersStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const fetchOrdersSuccess = (state, action) => {
+    return {
+        ...state,
+        orders: action.orders,
+        loading: false
+    };
+};
+
+const fetchOrdersFailed = (state, action) => {
+    return {
+        ...state,
+        error: action.error,
+        loading: false
+    };
+};
+
+const cancelOrderSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        orders: state.orders.filter(order => order.key !== action.orderID)
+    };
+};
+
+const cancelOrderFail = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        error: action.error
+    };
+};
 
 export default reducer;

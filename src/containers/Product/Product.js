@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import PlacingOrder from '../../components/PlacingOrder/PlacingOrder';
 import ProductCard from './ProductCard/ProductCard';
-import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../../hoc/Aux/Aux';
 import * as quantityActions from '../../store/actions/index';
@@ -46,8 +45,7 @@ const Product = (props) => {
     let card = null;
     if(product) {
         card = <Aux>
-            <ProductCard imgURL={product.imgURL} name={product.name} price={product.price} />
-            <Button clicked={() => {setPurchasing(true)}}>Order now</Button>
+            <ProductCard imgURL={product.imgURL} name={product.name} price={product.price} setPurchase={setPurchasing} />
         </Aux>
     };
 

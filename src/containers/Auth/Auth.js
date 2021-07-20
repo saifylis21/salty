@@ -6,6 +6,7 @@ import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import * as authActions from '../../store/actions/index';
+import classes from './Auth.module.css';
 
 const Auth = (props) => {
     const [authForm, setAuthForm] = useState({
@@ -132,9 +133,9 @@ const Auth = (props) => {
     }
 
     return (
-        <div>
+        <div className={classes.auth}>
             {authRedirect}
-            <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+            <h1>Log In Or Sign Up Into Your Account</h1>
             {errorMessage}
             {form}
             <Button clicked={switchAuthModeHandler} >

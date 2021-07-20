@@ -12,7 +12,7 @@ const CategoryItems = (props) => {
     });
 
     return (
-        <div>
+        <div style={{margin: "100px 0 0 0"}}>
             {items}
         </div>
     );

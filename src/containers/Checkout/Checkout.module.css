@@ -1,0 +1,14 @@
+.Checkout {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid red;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.CheckMarkerSpinner {
+    text-align: center;
+}

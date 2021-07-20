@@ -9,25 +9,38 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.CATEGORY_FETCH_START:
-            return {
-                ...state,
-                loading: true
-            };
+            return categoryFetchStart(state, action);
         case actionTypes.CATEGORY_FETCH_SET:
-            return {
-                ...state,
-                loading: false,
-                error: false,
-                categoryItems: action.categoryItems
-            };
+            return categoryFetchSet(state, action);
         case actionTypes.CATEGORY_FETCH_FAIL:
-            return {
-                ...state,
-                error: true
-            };
+            return categoryFetchFail(state, action);
         default:
             return state;
-    }
-}
+    };
+};
+
+const categoryFetchStart = (state, action) => {
+    return {
+        ...state,
+        categoryItems: null,
+        loading: true
+    };
+};
+
+const categoryFetchSet = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        error: false,
+        categoryItems: action.categoryItems
+    };
+};
+
+const categoryFetchFail = (state, action) => {
+    return {
+        ...state,
+        error: true
+    };
+};
 
 export default reducer;

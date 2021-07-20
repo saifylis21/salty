@@ -9,32 +9,48 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.PLACE_ORDER_START:
-            return {
-                ...state,
-                loading: true
-            };
+            return placeOrderStart(state, action);
         case actionTypes.PLACE_ORDER_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                orderSuccess: true
-            };
+            return placeOrderSuccess(state, action);
         case actionTypes.PLACE_ORDER_FAILED:
-            return {
-                ...state,
-                loading: false,
-                orderSuccess: false,
-                error: true
-            };
+            return placeOrderFailed(state, action);
         case actionTypes.PLACE_ORDER_RESET:
-            return {
-                ...state,
-                loading: false,
-                orderSuccess: false,
-                error: false
-            }
+            return placeOrderReset(state, action);
         default:
             return state;
+    };
+};
+
+const placeOrderStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const placeOrderSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        orderSuccess: true
+    };
+};
+
+const placeOrderFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        orderSuccess: false,
+        error: true
+    };
+};
+
+const placeOrderReset = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        orderSuccess: false,
+        error: false
     };
 };
 

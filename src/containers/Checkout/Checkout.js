@@ -6,6 +6,8 @@ import Button from '../../components/UI/Button/Button';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import * as CheckoutActions from '../../store/actions/index';
 import CheckMarkerSpinner from '../../components/UI/CheckMarkSpinner/CheckMarkSpinner';
+import classes from './Checkout.module.css';
+import { Link } from 'react-router-dom';
 
 const Checkout = (props) => {
 
@@ -153,6 +155,7 @@ const Checkout = (props) => {
 
     let form = (
         <>
+            <h1>Enter Personal Information</h1>
             <form onSubmit={orderHandler}>
                 {formElementsArray.map(formElement => (
                     <Input
@@ -185,11 +188,13 @@ const Checkout = (props) => {
 
     if(props.orderSuccess) {
         form = (
-            <>
+            <div className={classes.CheckMarkerSpinner}>
                 <CheckMarkerSpinner check />
                 <h3>Order placed successfully!</h3>
-                <Button clicked={() => props.history.push('/')}>Go To Home</Button>
-            </>
+                
+                <p>You will receive your order in 3-5 days. Click on <Link to="/orders">Orders</Link> to view all of your current orders.</p>
+                {/* <Button clicked={}>You will receive your order in 3-5 days. </Button> */}
+            </div>
         );
     };
 
@@ -198,10 +203,7 @@ const Checkout = (props) => {
     };
 
     return (
-        <div>
-            <h1>check dis shet mothertrucker</h1>
-            <h1>check dis shet mothertrucker</h1>
-            <h1>check dis shet mothertrucker</h1>
+        <div className={classes.Checkout}>
             {form}
         </div>
     );
