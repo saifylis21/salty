@@ -35,12 +35,12 @@ const Product = (props) => {
             props.history.push('/checkout');
         } else {
             props.history.push('/auth');
-        }
-    }
+        };
+    };
 
     const purchaseCancelHandler = () => {
         setPurchasing(false)
-    }
+    };
 
     let card = null;
     if(product) {
@@ -52,7 +52,7 @@ const Product = (props) => {
     return (
         <Aux>
             {card}
-            {purchasing && <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
+            {<Modal show={purchasing} modalClosed={purchaseCancelHandler}>
                 <PlacingOrder
                     name={product.name}
                     totalPrice={props.totalPrice}
@@ -66,7 +66,6 @@ const Product = (props) => {
             </Modal>}
         </Aux>
     );
-
 };
 
 const mapStateToProps = state => {
@@ -76,14 +75,14 @@ const mapStateToProps = state => {
         quantity: state.quantity.quantity,
         isAuthenticated: state.auth.token !== null
     };
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         inc: (cost, name) => dispatch(quantityActions.incQuantity(cost, name)),
         dec: (cost) => dispatch(quantityActions.decQuantity(cost)),
         reset: () => dispatch(quantityActions.resetQuantity())
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

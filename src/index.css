@@ -9,3 +9,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.carousel {
+  max-height: 600px;
+}
+
+.carousel img {
+  position: relative;
+  top: -260px;
+  height: 100%;
+}

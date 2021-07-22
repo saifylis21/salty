@@ -49,7 +49,7 @@ const Orders = (props) => {
     return (
         <div className={classes.Orders}>
             {ordersShow}
-            {tobeDeleatedOrderID != null && <Modal show={tobeDeleatedOrderID != null} modalClosed={cancellingCancelHandler}>
+            {<Modal show={tobeDeleatedOrderID != null} modalClosed={cancellingCancelHandler}>
                 <h2>Are you sure you want to cancel this order?</h2>
                 <Button clicked={cancelOrderHandler}>Yes</Button>
                 <Button clicked={cancellingCancelHandler}>No</Button>
