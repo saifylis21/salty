@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel } from "react-responsive-carousel";
+import classes from './ImageSlider.module.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ImageSlider = () => {
@@ -14,7 +15,7 @@ const ImageSlider = () => {
     ));
 
     return (
-        <Carousel showThumbs={false} infiniteLoop={true} showArrows>
+        <Carousel className={classes.myCaraousal} showThumbs={false} infiniteLoop={true} showArrows>
             {imgs}
         </Carousel>
     );
