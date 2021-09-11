@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/salty/static/css/main.c69a69cd.chunk.css",
+    "main.css": "/salty/static/css/main.4e5875db.chunk.css",
     "main.js": "/salty/static/js/main.3f2f7349.chunk.js",
     "main.js.map": "/salty/static/js/main.3f2f7349.chunk.js.map",
     "runtime-main.js": "/salty/static/js/runtime-main.2d5c8159.js",
@@ -12,14 +12,14 @@
     "static/js/3.2674ed6c.chunk.js.map": "/salty/static/js/3.2674ed6c.chunk.js.map",
     "index.html": "/salty/index.html",
     "static/css/2.4ce9e501.chunk.css.map": "/salty/static/css/2.4ce9e501.chunk.css.map",
-    "static/css/main.c69a69cd.chunk.css.map": "/salty/static/css/main.c69a69cd.chunk.css.map",
+    "static/css/main.4e5875db.chunk.css.map": "/salty/static/css/main.4e5875db.chunk.css.map",
     "static/js/2.5f758893.chunk.js.LICENSE.txt": "/salty/static/js/2.5f758893.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2d5c8159.js",
     "static/css/2.4ce9e501.chunk.css",
     "static/js/2.5f758893.chunk.js",
-    "static/css/main.c69a69cd.chunk.css",
+    "static/css/main.4e5875db.chunk.css",
     "static/js/main.3f2f7349.chunk.js"
   ]
 }
