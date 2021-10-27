@@ -193,7 +193,6 @@ const Checkout = (props) => {
                 <h3>Order placed successfully!</h3>
                 
                 <p>You will receive your order in 3-5 days. Click on <Link to="/orders"><b>Orders</b></Link> to view all of your current orders.</p>
-                {/* <Button clicked={}>You will receive your order in 3-5 days. </Button> */}
             </div>
         );
     };
